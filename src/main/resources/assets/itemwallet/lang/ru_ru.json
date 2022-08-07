@@ -1,0 +1,22 @@
+{
+  "itemwallet.st": "ст.",
+  "itemwallet.b": "б.",
+
+  "itemwallet.config.enableMod": "Включить мод",
+  "itemwallet.config.simpleMode": "Простой режим",
+  "itemwallet.tooltip.simpleMode": "Если включено, будет показывать счётчики раздельно без плашки.\n\nПо умолчанию встроено в интерфейс, однако, если что-либо наезжает друг на друга или выглядит некрасиво, \nто вы можете настроить положение счётчиков предпоследней функцией в конфиге.",
+  "itemwallet.config.isCountInStacks": "Считать в стаках",
+  "itemwallet.config.isCountInBlocks": "Считать в блоках",
+  "itemwallet.config.walletItem": "Основная валюта",
+  "itemwallet.config.enableExtraSupport": "Поддержка дополнительной валюты",
+  "itemwallet.tooltip.enableExtraSupport": "Позволяет пересчитывать дополнительную валюту в основную.\n\nНа данный момент поддерживает:\n- Алмазы <- Алмазные блоки\n- Руда <-> Глубинносланцевая руда\n- Незерит <- Незеритовые блоки\n- Изумруды <- Изумрудные блоки\n- и т.п.",
+  "itemwallet.config.enableShulkerCount": "Учитывать валюту в шалкерах",
+  "itemwallet.config.selectKeybind_key": "Выделить предмет",
+  "itemwallet.config.showCountInStacks_key": "Переключить \"Считать в стаках\"",
+  "itemwallet.config.showCountInBlocks_key": "Переключить \"Считать в блоках\"",
+  "itemwallet.config.select_color": "Цвет выделения",
+  "itemwallet.config.select_alpha": "Непрозрачность выделения",
+  "itemwallet.config.editorMode": "Режим редактирования положения счётчиков",
+  "itemwallet.tooltip.editorMode": "Включает возможность перемещать счётчики.\n\nДля этого необходимо нажать ЛКМ на иконку счётчика и, \nпереместив счётчик стрелками в нужное место, нажать Enter, чтобы сохранить, или Esc, чтобы сбросить.",
+  "itemwallet.config.coordsReset": "Сбросить положения счётчиков"
+}

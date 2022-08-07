@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "itemwallet",
+  "version": "${version}",
+  "name": "Item Wallet",
+  "description": "Mod for counting your given currency items.",
+  "authors": [
+    "Feytox",
+    "xisaloe",
+    "DearFox"
+  ],
+  "contact": {
+    "homepage": "https://modrinth.com/mod/ItemWallet",
+    "sources": "https://github.com/feytox/ItemWallet",
+    "issues": "https://github.com/feytox/ItemWallet/issues"
+  },
+  "license": "MIT",
+  "icon": "assets/itemwallet/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "name.uwu.feytox.itemwallet.ItemWalletClient"
+    ],
+    "modmenu": [
+      "name.uwu.feytox.itemwallet.config.ModMenuIntegration"
+    ]
+  },
+  "mixins": [
+    "itemwallet.mixins.json"
+  ],
+  "depends": {
+    "fabric": "*",
+    "minecraft": "1.18.2"
+  }
+}

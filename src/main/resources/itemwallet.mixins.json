@@ -1,0 +1,19 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "name.uwu.feytox.itemwallet.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "HandledScreenAccessor"
+  ],
+  "client": [
+    "ContainerCount",
+    "InventoryCount",
+    "KeyboardMixin",
+    "MouseMixin",
+    "ShulkerCount"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
