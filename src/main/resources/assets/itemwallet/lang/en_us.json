@@ -3,7 +3,7 @@
   "itemwallet.b": "b.",
   "itemwallet.config.enableMod": "Enable Mod",
   "itemwallet.config.simpleMode": "Simple Mode",
-  "itemwallet.tooltip.simpleMode": "If enabled, it will show the counters separately with no boxes.\n\nBy default, it is built into the interface. However, if something runs into each other or looks ugly,\nyou can adjust the position of the counters with the Editor Mode.",
+  "itemwallet.tooltip.simpleMode": "If enabled, it will show the counters separately with no boxes.\n\nBy default, it is built into the interface.\n However, if something runs into each other or looks ugly,\nyou can adjust the position of the counters with the Editor Mode.",
   "itemwallet.config.isCountInStacks": "Count in Stacks",
   "itemwallet.config.isCountInBlocks": "Count in Blocks",
   "itemwallet.config.walletItem": "Primary Currency",
@@ -16,6 +16,6 @@
   "itemwallet.config.select_color": "Highlight Color",
   "itemwallet.config.select_alpha": "Highlight Opacity",
   "itemwallet.config.editorMode": "Counters Edit Mode",
-  "itemwallet.tooltip.editorMode": "Toggles the capability to move counters.\n\nTo do this, you need to hit the counter icon with LMB and move the counter with the arrows to the right place, then press Enter to save or Esc to reset.",
+  "itemwallet.tooltip.editorMode": "Toggles the capability to move counters.\n\nTo do this, you need to hit the counter icon with LMB and move\n the counter with the arrows to the right place,\n then press Enter to save or Esc to reset.",
   "itemwallet.config.coordsReset": "Restore Default Positions"
 }
