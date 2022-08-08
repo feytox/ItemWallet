@@ -18,5 +18,9 @@
   "itemwallet.config.select_alpha": "Непрозрачность выделения",
   "itemwallet.config.editorMode": "Режим редактирования положения счётчиков",
   "itemwallet.tooltip.editorMode": "Включает возможность перемещать счётчики.\n\nДля этого необходимо нажать ЛКМ на иконку счётчика и,\nпереместив счётчик стрелками в нужное место, нажать Enter,\nчтобы сохранить, или Esc, чтобы сбросить.",
-  "itemwallet.config.coordsReset": "Сбросить положения счётчиков"
+  "itemwallet.config.coordsReset": "Сбросить положения счётчиков",
+
+  "itemwallet.config.generalCategory": "Основное",
+  "itemwallet.config.selectCategory": "Выделение",
+  "itemwallet.config.keysCategory": "Клавиши"
 }

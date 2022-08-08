@@ -14,6 +14,13 @@
     "sources": "https://github.com/feytox/ItemWallet",
     "issues": "https://github.com/feytox/ItemWallet/issues"
   },
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.discord": "https://discord.gg/U23C6ewP2X"
+      }
+    }
+  },
   "license": "MIT",
   "icon": "assets/itemwallet/icon.png",
   "environment": "client",

@@ -7,7 +7,6 @@ import me.shedaniel.clothconfig2.api.ConfigEntryBuilder;
 import me.shedaniel.clothconfig2.api.Modifier;
 import me.shedaniel.clothconfig2.api.ModifierKeyCode;
 import me.shedaniel.clothconfig2.impl.builders.DropdownMenuBuilder;
-import me.shedaniel.math.Color;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.item.Item;
@@ -38,7 +37,7 @@ public class ModMenuIntegration implements ModMenuApi {
 
         builder.setDefaultBackgroundTexture(new Identifier("minecraft:textures/block/cobbled_deepslate.png"));
 
-        builder.getOrCreateCategory(new LiteralText(""))
+        builder.getOrCreateCategory(new TranslatableText("itemwallet.config.generalCategory"))
                 .addEntry(entryBuilder.startBooleanToggle(
                             new TranslatableText("itemwallet.config.enableMod"),
                             config.enableMod)
@@ -86,6 +85,37 @@ public class ModMenuIntegration implements ModMenuApi {
                         .setDefaultValue(false)
                         .setSaveConsumer(value -> config.enableShulkerCount = value)
                         .build())
+                .addEntry(entryBuilder.startBooleanToggle(
+                                new TranslatableText("itemwallet.config.editorMode"),
+                                config.editorMode)
+                        .setTooltip(new TranslatableText("itemwallet.tooltip.editorMode"))
+                        .setDefaultValue(false)
+                        .setSaveConsumer(value -> config.editorMode = value)
+                        .build())
+                .addEntry(entryBuilder.startBooleanToggle(
+                                new TranslatableText("itemwallet.config.coordsReset"),
+                                false)
+                        .setDefaultValue(false)
+                        .setSaveConsumer(ModConfig::resetCoordsConfig)
+                        .build());
+
+        builder.getOrCreateCategory(new TranslatableText("itemwallet.config.selectCategory"))
+                .addEntry(entryBuilder.startColorField(
+                                new TranslatableText("itemwallet.config.select_color"),
+                                config.select_color)
+                        .setDefaultValue(9237731)
+                        .setSaveConsumer(color -> config.select_color = color)
+                        .build())
+                .addEntry(entryBuilder.startIntField(
+                                new TranslatableText("itemwallet.config.select_alpha"),
+                                config.select_alpha)
+                        .setDefaultValue(127)
+                        .setMin(0)
+                        .setMax(255)
+                        .setSaveConsumer(alpha -> config.select_alpha = alpha)
+                        .build());
+
+        builder.getOrCreateCategory(new TranslatableText("itemwallet.config.keysCategory"))
                 .addEntry(entryBuilder.startModifierKeyCodeField(
                                 new TranslatableText("itemwallet.config.selectKeybind_key"),
                                 ModifierKeyCode.of(getKeyCode(config.selectKeybind_key),
@@ -118,34 +148,8 @@ public class ModMenuIntegration implements ModMenuApi {
                             config.showCountInBlocks_key = modifierKeyCode.getKeyCode().getCode();
                             config.showCountInBlocks_mod = modifierKeyCode.getModifier().getValue();
                         })
-                        .build())
-                .addEntry(entryBuilder.startColorField(
-                                new TranslatableText("itemwallet.config.select_color"),
-                                config.select_color)
-                        .setDefaultValue(9237731)
-                        .setSaveConsumer(color -> config.select_color = color)
-                        .build())
-                .addEntry(entryBuilder.startIntField(
-                                new TranslatableText("itemwallet.config.select_alpha"),
-                                config.select_alpha)
-                        .setDefaultValue(127)
-                        .setMin(0)
-                        .setMax(255)
-                        .setSaveConsumer(alpha -> config.select_alpha = alpha)
-                        .build())
-                .addEntry(entryBuilder.startBooleanToggle(
-                                new TranslatableText("itemwallet.config.editorMode"),
-                                config.editorMode)
-                        .setTooltip(new TranslatableText("itemwallet.tooltip.editorMode"))
-                        .setDefaultValue(false)
-                        .setSaveConsumer(value -> config.editorMode = value)
-                        .build())
-                .addEntry(entryBuilder.startBooleanToggle(
-                                new TranslatableText("itemwallet.config.coordsReset"),
-                                false)
-                        .setDefaultValue(false)
-                        .setSaveConsumer(ModConfig::resetCoordsConfig)
                         .build());
+
         builder.transparentBackground();
 
         return builder
