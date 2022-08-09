@@ -1,14 +1,6 @@
 package name.uwu.feytox.itemwallet.counter;
 
-import me.shedaniel.autoconfig.annotation.Config;
-import name.uwu.feytox.itemwallet.ItemWalletClient;
 import name.uwu.feytox.itemwallet.gui.GuiTexture;
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
-import net.minecraft.util.Identifier;
-
-import static name.uwu.feytox.itemwallet.ItemWalletClient.MOD_ID;
 
 public enum ContainerType {
     INVENTORY(new GuiTexture(0, 0, 5, 5)),

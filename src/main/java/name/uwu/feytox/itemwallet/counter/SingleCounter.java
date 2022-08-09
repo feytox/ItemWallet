@@ -6,21 +6,18 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtList;
 import net.minecraft.screen.GenericContainerScreenHandler;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.TranslatableTextContent;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.registry.Registry;
-import org.apache.commons.lang3.ObjectUtils;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -71,8 +68,8 @@ public class SingleCounter {
     public static SingleCounter getChestCounter(Screen screen) {
         Text screenTitle = screen.getTitle();
 
-        if (screenTitle instanceof TranslatableText) {
-            String screenName = ((TranslatableText) screenTitle).getKey();
+        if (screenTitle instanceof TranslatableTextContent) {
+            String screenName = ((TranslatableTextContent) screenTitle).getKey();
 
             switch (screenName) {
                 case "container.chest" -> {

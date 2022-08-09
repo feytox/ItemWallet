@@ -10,8 +10,7 @@ import me.shedaniel.clothconfig2.impl.builders.DropdownMenuBuilder;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.item.Item;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
@@ -31,40 +30,40 @@ public class ModMenuIntegration implements ModMenuApi {
     private static Screen createConfigScreen(Screen parent) {
         ConfigBuilder builder = ConfigBuilder.create()
                 .setParentScreen(parent)
-                .setTitle(new LiteralText("Item Wallet"));
+                .setTitle(Text.literal("Item Wallet"));
         ConfigEntryBuilder entryBuilder = builder.entryBuilder();
         ModConfig config = ModConfig.get();
 
         builder.setDefaultBackgroundTexture(new Identifier("minecraft:textures/block/cobbled_deepslate.png"));
 
-        builder.getOrCreateCategory(new TranslatableText("itemwallet.config.generalCategory"))
+        builder.getOrCreateCategory(Text.translatable("itemwallet.config.generalCategory"))
                 .addEntry(entryBuilder.startBooleanToggle(
-                            new TranslatableText("itemwallet.config.enableMod"),
+                            Text.translatable("itemwallet.config.enableMod"),
                             config.enableMod)
                         .setDefaultValue(true)
                         .setSaveConsumer(value -> config.enableMod = value)
                         .build())
                 .addEntry(entryBuilder.startBooleanToggle(
-                                new TranslatableText("itemwallet.config.simpleMode"),
+                                Text.translatable("itemwallet.config.simpleMode"),
                                 config.simpleMode)
-                        .setTooltip(new TranslatableText("itemwallet.tooltip.simpleMode"))
+                        .setTooltip(Text.translatable("itemwallet.tooltip.simpleMode"))
                         .setDefaultValue(false)
                         .setSaveConsumer(value -> config.simpleMode = value)
                         .build())
                 .addEntry(entryBuilder.startBooleanToggle(
-                                new TranslatableText("itemwallet.config.isCountInStacks"),
+                                Text.translatable("itemwallet.config.isCountInStacks"),
                                 config.isCountInStacks)
                         .setDefaultValue(false)
                         .setSaveConsumer(value -> config.isCountInStacks = value)
                         .build())
                 .addEntry(entryBuilder.startBooleanToggle(
-                                new TranslatableText("itemwallet.config.isCountInBlocks"),
+                                Text.translatable("itemwallet.config.isCountInBlocks"),
                                 config.isCountInBlocks)
                         .setDefaultValue(false)
                         .setSaveConsumer(value -> config.isCountInBlocks = value)
                         .build())
                 .addEntry(entryBuilder.startDropdownMenu(
-                                new TranslatableText("itemwallet.config.walletItem"),
+                                Text.translatable("itemwallet.config.walletItem"),
                                 DropdownMenuBuilder.TopCellElementBuilder.ofItemObject(getWalletItem()),
                                 DropdownMenuBuilder.CellCreatorBuilder.ofItemObject())
                         .setDefaultValue(getWalletItem("minecraft:diamond"))
@@ -73,41 +72,41 @@ public class ModMenuIntegration implements ModMenuApi {
                         .setSaveConsumer(item -> config.walletItem = Registry.ITEM.getId(item).toString())
                         .build())
                 .addEntry(entryBuilder.startBooleanToggle(
-                                new TranslatableText("itemwallet.config.enableExtraSupport"),
+                                Text.translatable("itemwallet.config.enableExtraSupport"),
                                 config.enableExtraSupport)
-                        .setTooltip(new TranslatableText("itemwallet.tooltip.enableExtraSupport"))
+                        .setTooltip(Text.translatable("itemwallet.tooltip.enableExtraSupport"))
                         .setDefaultValue(true)
                         .setSaveConsumer(value -> config.enableExtraSupport = value)
                         .build())
                 .addEntry(entryBuilder.startBooleanToggle(
-                                new TranslatableText("itemwallet.config.enableShulkerCount"),
+                                Text.translatable("itemwallet.config.enableShulkerCount"),
                                 config.enableShulkerCount)
                         .setDefaultValue(false)
                         .setSaveConsumer(value -> config.enableShulkerCount = value)
                         .build())
                 .addEntry(entryBuilder.startBooleanToggle(
-                                new TranslatableText("itemwallet.config.editorMode"),
+                                Text.translatable("itemwallet.config.editorMode"),
                                 config.editorMode)
-                        .setTooltip(new TranslatableText("itemwallet.tooltip.editorMode"))
+                        .setTooltip(Text.translatable("itemwallet.tooltip.editorMode"))
                         .setDefaultValue(false)
                         .setSaveConsumer(value -> config.editorMode = value)
                         .build())
                 .addEntry(entryBuilder.startBooleanToggle(
-                                new TranslatableText("itemwallet.config.coordsReset"),
+                                Text.translatable("itemwallet.config.coordsReset"),
                                 false)
                         .setDefaultValue(false)
                         .setSaveConsumer(ModConfig::resetCoordsConfig)
                         .build());
 
-        builder.getOrCreateCategory(new TranslatableText("itemwallet.config.selectCategory"))
+        builder.getOrCreateCategory(Text.translatable("itemwallet.config.selectCategory"))
                 .addEntry(entryBuilder.startColorField(
-                                new TranslatableText("itemwallet.config.select_color"),
+                                Text.translatable("itemwallet.config.select_color"),
                                 config.select_color)
                         .setDefaultValue(9237731)
                         .setSaveConsumer(color -> config.select_color = color)
                         .build())
                 .addEntry(entryBuilder.startIntField(
-                                new TranslatableText("itemwallet.config.select_alpha"),
+                                Text.translatable("itemwallet.config.select_alpha"),
                                 config.select_alpha)
                         .setDefaultValue(127)
                         .setMin(0)
@@ -115,9 +114,9 @@ public class ModMenuIntegration implements ModMenuApi {
                         .setSaveConsumer(alpha -> config.select_alpha = alpha)
                         .build());
 
-        builder.getOrCreateCategory(new TranslatableText("itemwallet.config.keysCategory"))
+        builder.getOrCreateCategory(Text.translatable("itemwallet.config.keysCategory"))
                 .addEntry(entryBuilder.startModifierKeyCodeField(
-                                new TranslatableText("itemwallet.config.selectKeybind_key"),
+                                Text.translatable("itemwallet.config.selectKeybind_key"),
                                 ModifierKeyCode.of(getKeyCode(config.selectKeybind_key),
                                         Modifier.of((short) config.selectKeybind_mod)))
                         .setDefaultValue(ModifierKeyCode.of(getKeyCode(2),
@@ -128,7 +127,7 @@ public class ModMenuIntegration implements ModMenuApi {
                         })
                         .build())
                 .addEntry(entryBuilder.startModifierKeyCodeField(
-                                new TranslatableText("itemwallet.config.showCountInStacks_key"),
+                                Text.translatable("itemwallet.config.showCountInStacks_key"),
                                 ModifierKeyCode.of(getKeyCode(config.showCountInStacks_key),
                                         Modifier.of((short) config.showCountInStacks_mod)))
                         .setDefaultValue(ModifierKeyCode.of(InputUtil.Type.KEYSYM.createFromCode(71),
@@ -139,7 +138,7 @@ public class ModMenuIntegration implements ModMenuApi {
                         })
                         .build())
                 .addEntry(entryBuilder.startModifierKeyCodeField(
-                                new TranslatableText("itemwallet.config.showCountInBlocks_key"),
+                                Text.translatable("itemwallet.config.showCountInBlocks_key"),
                                 ModifierKeyCode.of(getKeyCode(config.showCountInBlocks_key),
                                         Modifier.of((short) config.showCountInBlocks_mod)))
                         .setDefaultValue(ModifierKeyCode.of(InputUtil.Type.KEYSYM.createFromCode(72),

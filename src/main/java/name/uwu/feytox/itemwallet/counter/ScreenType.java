@@ -1,9 +1,8 @@
 package name.uwu.feytox.itemwallet.counter;
 
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.TranslatableTextContent;
 
 public enum ScreenType {
     INVENTORY,
@@ -14,13 +13,11 @@ public enum ScreenType {
     public static ScreenType getScreenType(Screen screen) {
         Text screenTitle = screen.getTitle();
 
-        if (screenTitle instanceof TranslatableText) {
-            String screenName = ((TranslatableText) screenTitle).getKey();
+        if (screenTitle instanceof TranslatableTextContent) {
+            String screenName = ((TranslatableTextContent) screenTitle).getKey();
 
-            switch (screenName) {
-                case "container.chestDouble" -> {
-                    return ScreenType.DOUBLE_CHEST;
-                }
+            if ("container.chestDouble".equals(screenName)) {
+                return ScreenType.DOUBLE_CHEST;
             }
         }
 
