@@ -3,24 +3,21 @@ package name.uwu.feytox.itemwallet.counter;
 import name.uwu.feytox.itemwallet.config.ModConfig;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtList;
 import net.minecraft.screen.GenericContainerScreenHandler;
-import net.minecraft.screen.ScreenHandler;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.registry.Registry;
-import org.apache.commons.lang3.ObjectUtils;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -103,9 +100,8 @@ public class SingleCounter {
         MinecraftClient client = MinecraftClient.getInstance();
 
         if (client.player != null) {
-            ScreenHandler screenHandler = client.player.currentScreenHandler;
-            if (screenHandler != null) {
-                Inventory inventory = ((GenericContainerScreenHandler) screenHandler).getInventory();
+            if (client.player.currentScreenHandler instanceof GenericContainerScreenHandler containerHandler) {
+                Inventory inventory = containerHandler.getInventory();
                 this.count = getCount(inventory);
                 return;
             }
@@ -131,7 +127,8 @@ public class SingleCounter {
     }
 
     private static int getCount(Item item) {
-        return getCount(MinecraftClient.getInstance().player.getInventory(), item);
+        ClientPlayerEntity player = MinecraftClient.getInstance().player;
+        return player == null ? 0 : getCount(player.getInventory(), item);
     }
 
     private static int getCount(Inventory inventory, Item item) {
