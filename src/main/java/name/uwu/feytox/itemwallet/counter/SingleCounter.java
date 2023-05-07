@@ -9,12 +9,12 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtList;
+import net.minecraft.registry.Registries;
 import net.minecraft.screen.GenericContainerScreenHandler;
 import net.minecraft.text.TextContent;
 import net.minecraft.text.TranslatableTextContent;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
-import net.minecraft.util.registry.Registry;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -115,7 +115,7 @@ public class SingleCounter {
     }
 
     public static Item getWalletItem(String id) {
-        return Registry.ITEM.get(new Identifier(id));
+        return Registries.ITEM.get(new Identifier(id));
     }
 
     private static int getCount() {
@@ -143,7 +143,7 @@ public class SingleCounter {
 
                 for(int j = 0; j < inventory.size(); ++j) {
                     ItemStack itemStack = inventory.getStack(j);
-                    if (Registry.ITEM.getId(itemStack.getItem()).toString().contains("shulker_box")) {
+                    if (Registries.ITEM.getId(itemStack.getItem()).toString().contains("shulker_box")) {
                         itemStacks.add(itemStack);
                     }
                 }
@@ -165,7 +165,7 @@ public class SingleCounter {
             count += getShulkerCount(() -> {
                 List<ItemStack> result = new ArrayList<>();
                 itemStacks.forEach(itemStack -> {
-                    if (Registry.ITEM.getId(itemStack.getItem()).toString().contains("shulker_box")) {
+                    if (Registries.ITEM.getId(itemStack.getItem()).toString().contains("shulker_box")) {
                         result.add(itemStack);
                     }
                 });
@@ -189,19 +189,19 @@ public class SingleCounter {
 
     public static int getCountExtra(Function<Item, Integer> countGetter) {
         Item walletItem = getWalletItem();
-        String item_id = Registry.ITEM.getId(walletItem).toString();
+        String item_id = Registries.ITEM.getId(walletItem).toString();
 
         if (item_id.contains("minecraft:")) {
             item_id = item_id.replace("minecraft:", "");
             if (item_id.endsWith("ore") && !item_id.contains("nether") && !item_id.startsWith("deepslate")) {
-                return countGetter.apply(Registry.ITEM.get(new Identifier("minecraft",
+                return countGetter.apply(Registries.ITEM.get(new Identifier("minecraft",
                         "deepslate_" + item_id)));
             } else if (item_id.endsWith("ore") && !item_id.contains("nether")) {
-                return countGetter.apply(Registry.ITEM.get(new Identifier("minecraft",
+                return countGetter.apply(Registries.ITEM.get(new Identifier("minecraft",
                         item_id.replace("deepslate_", ""))));
             } else if (!item_id.contains("block") && containsAny(item_id, "iron", "gold", "lapis", "netherite",
                     "coal", "emerald", "diamond", "copper", "redstone", "raw")) {
-                return 9 * countGetter.apply(Registry.ITEM.get(new Identifier("minecraft",
+                return 9 * countGetter.apply(Registries.ITEM.get(new Identifier("minecraft",
                         item_id.replace("_ingot", "").replace("_lazuli", "") + "_block")));
             }
         }
@@ -212,7 +212,7 @@ public class SingleCounter {
     public static int getShulkerCount(Supplier<List<ItemStack>> shulkersGetter) {
         int count = 0;
 
-        String walletItem_id = Registry.ITEM.getId(getWalletItem()).toString();
+        String walletItem_id = Registries.ITEM.getId(getWalletItem()).toString();
         List<ItemStack> shulkers = shulkersGetter.get();
 
         List<SimpleStack> allShulkerItems = new ArrayList<>();
@@ -237,7 +237,7 @@ public class SingleCounter {
                 int result = 0;
 
                 for (SimpleStack simpleStack : allShulkerItems) {
-                    if (Registry.ITEM.getId(item).toString().equals(simpleStack.item_id)) {
+                    if (Registries.ITEM.getId(item).toString().equals(simpleStack.item_id)) {
                         result += simpleStack.count;
                     }
                 }

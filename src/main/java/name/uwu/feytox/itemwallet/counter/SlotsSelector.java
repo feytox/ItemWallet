@@ -13,9 +13,9 @@ import net.minecraft.client.util.Window;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.registry.Registries;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.util.math.ColorHelper;
-import net.minecraft.util.registry.Registry;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -26,7 +26,7 @@ import java.util.Map;
 import static name.uwu.feytox.itemwallet.counter.SingleCounter.*;
 
 public class SlotsSelector {
-    private static Map<Integer, Slot> selectedSlots = new HashMap<>();
+    private static final Map<Integer, Slot> selectedSlots = new HashMap<>();
 
     public static void selectSlot() {
         MinecraftClient client = MinecraftClient.getInstance();
@@ -39,7 +39,6 @@ public class SlotsSelector {
 
             if (selectedSlot != null) {
                 if (!selectedSlots.containsKey(selectedSlot.id)) {
-                    Item item = selectedSlot.getStack().getItem();
                     selectedSlots.put(selectedSlot.id, selectedSlot);
                 } else {
                     selectedSlots.remove(selectedSlot.id);
@@ -55,6 +54,7 @@ public class SlotsSelector {
     public static void highlightSlots(MatrixStack matrices) {
         Window window = MinecraftClient.getInstance().getWindow();
         HandledScreen<?> handledScreen = (HandledScreen<?>) MinecraftClient.getInstance().currentScreen;
+        if (handledScreen == null) return;
 
         int x = (window.getScaledWidth() - ((HandledScreenAccessor) handledScreen).getBackgroundWidth()) / 2;
         if (handledScreen instanceof InventoryScreen && ((InventoryScreen) handledScreen).getRecipeBookWidget().isOpen()) {
@@ -84,7 +84,7 @@ public class SlotsSelector {
                 for (Integer slot_id: selectedSlots.keySet()) {
                     Slot slot = selectedSlots.get(slot_id);
                     ItemStack selectedItem = slot.getStack();
-                    if (Registry.ITEM.getId(selectedItem.getItem()).toString().contains("shulker_box")) {
+                    if (Registries.ITEM.getId(selectedItem.getItem()).toString().contains("shulker_box")) {
                         result.add(selectedItem);
                     }
                 }

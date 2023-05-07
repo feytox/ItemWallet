@@ -40,14 +40,7 @@ public class ItemWalletClient implements ClientModInitializer {
         MinecraftClient client = MinecraftClient.getInstance();
 
         if (client.world != null && client.player != null) {
-            client.world.playSound(
-                    client.player.getBlockPos(),
-                    sound,
-                    SoundCategory.BLOCKS,
-                    0.5f,
-                    1f,
-                    false
-            );
+            client.world.playSound(null, client.player.getBlockPos(), sound, SoundCategory.BLOCKS, 0.5f, 1);
         }
     }
 

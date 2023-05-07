@@ -10,9 +10,9 @@ import me.shedaniel.clothconfig2.impl.builders.DropdownMenuBuilder;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.item.Item;
+import net.minecraft.registry.Registries;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 
 import java.util.Comparator;
 import java.util.LinkedHashSet;
@@ -67,9 +67,9 @@ public class ModMenuIntegration implements ModMenuApi {
                                 DropdownMenuBuilder.TopCellElementBuilder.ofItemObject(getWalletItem()),
                                 DropdownMenuBuilder.CellCreatorBuilder.ofItemObject())
                         .setDefaultValue(getWalletItem("minecraft:diamond"))
-                        .setSelections(Registry.ITEM.stream().sorted(Comparator.comparing(Item::toString))
+                        .setSelections(Registries.ITEM.stream().sorted(Comparator.comparing(Item::toString))
                                 .collect(Collectors.toCollection(LinkedHashSet::new)))
-                        .setSaveConsumer(item -> config.walletItem = Registry.ITEM.getId(item).toString())
+                        .setSaveConsumer(item -> config.walletItem = Registries.ITEM.getId(item).toString())
                         .build())
                 .addEntry(entryBuilder.startBooleanToggle(
                                 Text.translatable("itemwallet.config.enableExtraSupport"),
