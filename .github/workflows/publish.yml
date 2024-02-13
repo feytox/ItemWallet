@@ -29,7 +29,8 @@ jobs:
       - name: build
         run: ./gradlew build
 
-      - uses: Kir-Antipov/mc-publish@v3.3
+      - name: publish to Modrinth and CurseForge
+        uses: Kir-Antipov/mc-publish@v3.3
         with:
           modrinth-id: j3bYIyWM
           modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
@@ -37,5 +38,7 @@ jobs:
           curseforge-id: 663279
           curseforge-token: ${{ secrets.CURSEFORGE_TOKEN }}
 
-          name: ""
+          name: "[1.20 - 1.20.1] Item Wallet 1.0.2"
           changelog-file: CHANGELOG.*
+          game-versions: |
+            [1.20,1.20.1]
