@@ -5,11 +5,9 @@ import name.uwu.feytox.itemwallet.counter.ContainerType;
 import name.uwu.feytox.itemwallet.counter.ScreenType;
 import name.uwu.feytox.itemwallet.counter.SingleCounter;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.util.Window;
-import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.client.gui.DrawContext;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static name.uwu.feytox.itemwallet.gui.GuiCounter.getCountPxLength;
@@ -40,7 +38,7 @@ public class CounterHUD {
         return this;
     }
 
-    public void draw(MatrixStack matrices) {
+    public void draw(DrawContext context) {
         if (!this.counterList.isEmpty()) {
             CounterCoord counterCoords = new CounterCoord(this);
             if (counterCoords.anchor_x != null) {
@@ -59,14 +57,12 @@ public class CounterHUD {
 
                 CounterPanel panel = new CounterPanel(panel_width, panel_height);
                 CounterPanel.createNinePatch(panel)
-                        .paint(matrices,
-                                getXFromCenter(counterCoords.anchor_x),
-                                getYFromCenter(counterCoords.anchor_y));
+                        .paint(context, getXFromCenter(counterCoords.anchor_x), getYFromCenter(counterCoords.anchor_y));
             }
             if (counterCoords.line1_info != null) {
                 // simple, one line (not inventory)
                 CounterEditor.availableEditors.clear();
-                drawCounterLine(matrices, counterCoords.line1_info, counterCoords.line1_x, counterCoords.line1_y,
+                drawCounterLine(context, counterCoords.line1_info, counterCoords.line1_x, counterCoords.line1_y,
                         this.screenType);
             } else {
                 // all other
@@ -87,7 +83,7 @@ public class CounterHUD {
                         }
                     }
 
-                    drawCounterLine(matrices, line_info, line_x, line_y, this.screenType);
+                    drawCounterLine(context, line_info, line_x, line_y, this.screenType);
                 }
             }
         }
@@ -103,15 +99,15 @@ public class CounterHUD {
         return lastLength;
     }
 
-    private static void drawCounterLine(MatrixStack matrices, GuiCounter line_info, int line_x, int line_y,
+    private static void drawCounterLine(DrawContext context, GuiCounter line_info, int line_x, int line_y,
                                         ScreenType screenType) {
-        line_info.containerTexture.drawTexture(matrices,
+        line_info.containerTexture.drawTexture(context,
                 getXFromCenter(line_x),
                 getYFromCenter(line_y));
-        line_info.countTexture.drawTexture(matrices,
+        line_info.countTexture.drawTexture(context,
                 getXFromCenter(line_x + 8 + line_info.count_ax),
                 getYFromCenter(line_y));
-        line_info.drawCount(matrices,
+        line_info.drawCount(context,
                 getXFromCenter(line_x + 8),
                 getYFromCenter(line_y + 1));
 

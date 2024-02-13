@@ -7,8 +7,8 @@ import name.uwu.feytox.itemwallet.counter.SingleCounter;
 import name.uwu.feytox.itemwallet.counter.SlotsSelector;
 import name.uwu.feytox.itemwallet.gui.CounterHUD;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.ShulkerBoxScreen;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ShulkerBoxScreenHandler;
@@ -22,7 +22,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class ShulkerCount {
 
     @Inject(method = "drawBackground", at = @At("RETURN"))
-    public void onDrawBackground(MatrixStack matrices, float delta, int mouseX, int mouseY, CallbackInfo ci) {
+    public void onDrawBackground(DrawContext context, float delta, int mouseX, int mouseY, CallbackInfo ci) {
         MinecraftClient client = MinecraftClient.getInstance();
         ItemWalletClient.lastScreen = client.currentScreen;
         ModConfig config = ModConfig.get();
@@ -39,8 +39,8 @@ public class ShulkerCount {
                     .add(inventoryCounter)
                     .add(shulkerCounter)
                     .add(SingleCounter.allCount(inventoryCounter, shulkerCounter));
-            hud.draw(matrices);
+            hud.draw(context);
         }
-        SlotsSelector.highlightSlots(matrices);
+        SlotsSelector.highlightSlots(context);
     }
 }

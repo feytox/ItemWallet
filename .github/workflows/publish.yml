@@ -1,0 +1,22 @@
+on:
+  [ workflow_dispatch ]
+jobs:
+  build:
+    permissions:
+      contents: write
+    strategy:
+      matrix:
+        java: [ 17 ]
+        os: [ ubuntu-22.04 ]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: Kir-Antipov/mc-publish@v3.3
+        with:
+          modrinth-id: j3bYIyWM
+          modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
+
+          curseforge-id: 663279
+          curseforge-token: ${{ secrets.CURSEFORGE_TOKEN }}
+
+          name: ""
+          changelog-file: CHANGELOG.md

@@ -19,6 +19,12 @@
       "links": {
         "modmenu.discord": "https://discord.gg/U23C6ewP2X"
       }
+    },
+    "mc-publish": {
+      "dependencies": [
+        "modmenu(optional)",
+        "cloth-config(embedded)"
+      ]
     }
   },
   "license": "MIT",
@@ -37,6 +43,6 @@
   ],
   "depends": {
     "fabric": "*",
-    "minecraft": "1.19.x"
+    "minecraft": "1.20.x"
   }
 }

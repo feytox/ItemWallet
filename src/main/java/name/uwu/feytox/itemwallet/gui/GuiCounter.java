@@ -4,12 +4,11 @@ import name.uwu.feytox.itemwallet.config.ModConfig;
 import name.uwu.feytox.itemwallet.counter.ContainerType;
 import name.uwu.feytox.itemwallet.counter.SingleCounter;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.DrawableHelper;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.resource.language.I18n;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Text;
+import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -51,8 +50,8 @@ public class GuiCounter {
         this.count_ax = getCountPxLength(count);
     }
 
-    public void drawCount(MatrixStack matrices, int x, int y) {
-        DrawableHelper.drawTextWithShadow(matrices, MinecraftClient.getInstance().textRenderer, Text.literal(this.count),
+    public void drawCount(DrawContext context, int x, int y) {
+        context.drawTextWithShadow(MinecraftClient.getInstance().textRenderer, Text.literal(this.count),
                 x, y, -1);
     }
 
