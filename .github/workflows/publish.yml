@@ -19,4 +19,4 @@ jobs:
           curseforge-token: ${{ secrets.CURSEFORGE_TOKEN }}
 
           name: ""
-          changelog-file: CHANGELOG.md
+          changelog-file: CHANGELOG.*
