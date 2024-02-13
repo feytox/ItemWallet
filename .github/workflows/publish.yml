@@ -42,3 +42,7 @@ jobs:
           changelog-file: CHANGELOG.*
           game-versions: |
             [1.20,1.20.1]
+
+          dependencies: |
+            modmenu(optional)
+            cloth-config(embedded)
